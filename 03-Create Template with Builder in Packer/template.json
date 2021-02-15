@@ -1,0 +1,12 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ami_name": "trevor {{timestamp}}",
+            "profile": "cbt",
+            "ssh_username": "ubuntu",
+            "source_ami": "ami-0928f4202481dfdf6",
+            "instance_type": "t3.large"
+        }
+    ]
+}

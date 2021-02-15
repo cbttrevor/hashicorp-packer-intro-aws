@@ -1,0 +1,8 @@
+- name: Trevor
+  hosts: localhost
+  tasks:
+    - name: Install NGINX
+      become: true
+      apt:
+        state: present
+        name: nginx

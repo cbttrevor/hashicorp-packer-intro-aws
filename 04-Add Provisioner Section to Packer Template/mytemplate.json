@@ -1,0 +1,23 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "profile": "cbt",
+            "region": "us-west-2",
+            "ami_name": "ubuntutrevor {{timestamp}}",
+            "ssh_username": "ubuntu",
+            "source_ami": "ami-0928f4202481dfdf6",
+            "instance_type": "t3.large"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo apt-get update",
+                "sudo apt-get upgrade --yes",
+                "sudo snap install powershell --classic"
+            ]
+        }
+    ]
+}

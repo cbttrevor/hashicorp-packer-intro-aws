@@ -1,0 +1,32 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ami_name": "trevor {{timestamp}}",
+            "profile": "cbt",
+            "ssh_username": "ubuntu",
+            "source_ami": "ami-0928f4202481dfdf6",
+            "instance_type": "t3.large"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+              "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done"
+            ]
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo apt-get update",
+                "sudo apt-get upgrade --yes",
+                "sudo apt-get install ansible --yes"
+            ]
+        },
+        {
+            "type": "ansible-local",
+            "playbook_file": "./myplaybook.yml"
+        }
+    ]
+}
